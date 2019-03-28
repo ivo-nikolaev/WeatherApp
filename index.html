@@ -1,0 +1,35 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<div id='app'>
+    <h1>The Wather App</h1>
+        <input v-model="lookingFor" 
+               v-on:keyup.enter="lookUp"
+               placeholder="Look for a city">
+
+    <button @click="lookUp">What's the wather</button>
+
+    <p v-if="noData"> City not found </p>
+
+    <template v-if="show">
+        <h2>{{city}}, {{country}}</h2>
+        <table>             
+            <tr>
+                <th>Date</th>
+                <th>Temperature</th>
+                <th>Conditions</th>
+                <th>Himidity</th>
+                <th>Wind</th>
+              </tr>
+              <tr v-for="day in forcast">
+                  <td>{{day.date}}</td>
+                  <td>{{day.temp}} &deg;C</td>
+                  <td>{{day.description}}</td>
+                  <td>{{day.humidity}} %</td>
+                  <td>{{day.windSpeed}} m/s</td>
+
+              </tr>
+        </table>
+    </template>
+    
+</div>
+<script src='./app.js'></script>
